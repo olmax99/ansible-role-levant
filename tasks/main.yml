@@ -2,11 +2,27 @@
 #
 # Ansible tasks for the levant role
 #
+- name: check if rules file exists
+  stat: 
+    path: "{{ levant_home }}/levant"
+  register: levant_installed
 
-- name: Download levant
+- name: download levant
   get_url:
     url:      "{{ levant_download }}"
     dest:     "{{ levant_home }}/levant"
     mode:     "a+x"
+    owner:    "{{ levant_usr }}"
+    group:    "{{ levant_grp }}"
     checksum: "{{ levant_checksum }}"
   register: levant_was_downloaded
+  when: levant_installed.stat.exists == False
+  
+- name: set executable ownership, group and permissions
+  ansible.builtin.file:
+    path: "{{ levant_home }}/levant"
+    owner: "{{ levant_usr }}"
+    group: "{{ levant_grp }}"
+    mode: '0755'
+  when: levant_installed.stat.exists == True
+
