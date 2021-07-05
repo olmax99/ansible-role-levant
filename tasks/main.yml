@@ -8,7 +8,7 @@
   register: levant_installed
 
 - name: download levant
-  get_url:
+  unarchive:
     url:      "{{ levant_download }}"
     dest:     "{{ levant_home }}/levant"
     mode:     "a+x"
