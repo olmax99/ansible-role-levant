@@ -13,7 +13,7 @@
     dest:     "{{ levant_home }}"
     mode:     "a+x"
     owner:    "{{ levant_usr }}"
-    group:    "{{ levant_grp }}
+    group:    "{{ levant_grp }}"
     remote_src: yes
   register: levant_was_downloaded
   when: levant_installed.stat.exists == False
