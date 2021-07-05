@@ -15,6 +15,7 @@
     owner:    "{{ levant_usr }}"
     group:    "{{ levant_grp }}"
     checksum: "{{ levant_checksum }}"
+    remote_src: yes
   register: levant_was_downloaded
   when: levant_installed.stat.exists == False
   
