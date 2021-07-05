@@ -18,14 +18,6 @@
   register: levant_was_downloaded
   when: levant_installed.stat.exists == False
   
-- name: stat levant
-  stat: path="{{ levant_home }}"/levant_"{{ levant_version }}"_"{{ levant_archive }}"
-  register: levant_stat
-
-- name: Move archive name to levant
-  command: mv "{{ levant_home }}"/levant_"{{ levant_version }}"_"{{ levant_archive }}" "{{ levant_home }}"/levant_"{{ levant_version }}"_"{{ levant_archive }}"/levant
-  when: levant_stat.stat.exists
-  
 - name: set executable ownership, group and permissions
   file:
     path: "{{ levant_home }}/levant"
