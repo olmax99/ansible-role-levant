@@ -10,7 +10,7 @@
 - name: download levant
   unarchive:
     src:      "{{ levant_download }}"
-    dest:     "{{ levant_home }}/levant"
+    dest:     "{{ levant_home }}"
     mode:     "a+x"
     owner:    "{{ levant_usr }}"
     group:    "{{ levant_grp }}"
@@ -19,8 +19,16 @@
   register: levant_was_downloaded
   when: levant_installed.stat.exists == False
   
+- name: stat levant
+  stat: path={{ levant_home }}/levant_{{ levant_version }}_{{ levant_archive }}
+  register: levant_stat
+
+- name: Move archive name to levant
+  command: mv {{ levant_home }}/levant_{{ levant_version }}_{{ levant_archive }} {{ levant_home }}/levant_{{ levant_version }}_{{ levant_archive }}/levant
+  when: levant_stat.stat.exists
+  
 - name: set executable ownership, group and permissions
-  ansible.builtin.file:
+  file:
     path: "{{ levant_home }}/levant"
     owner: "{{ levant_usr }}"
     group: "{{ levant_grp }}"
