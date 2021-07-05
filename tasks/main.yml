@@ -9,7 +9,7 @@
 
 - name: download levant
   unarchive:
-    url:      "{{ levant_download }}"
+    src:      "{{ levant_download }}"
     dest:     "{{ levant_home }}/levant"
     mode:     "a+x"
     owner:    "{{ levant_usr }}"
