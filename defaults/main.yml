@@ -5,9 +5,9 @@
 # @see http://docs.ansible.com/playbooks_roles.html#roles
 #
 
-levant_version:  0.2.9
-levant_checksum: sha256:f454e5ca9f79dd092535282dfd66fa4807cb747b502579604e4a21b8f649489a
+levant_version:  0.3.0
+levant_checksum: 16171b0cf0ea1cdbd6805eb8b0160eaee32ed35f3832f958a231e7d71deb65e5
 
-levant_archive:  "linux-amd64-levant"
-levant_download: "https://github.com/hashicorp/levant/releases/download/{{ levant_version }}/{{ levant_archive }}"
+levant_archive:  "linux_386"
+levant_download: "https://releases.hashicorp.com/levant/{{ levant_version }}/levant_{{ levant_version }}_{{ levant_archive }}.zip"
 levant_home:     /usr/local/bin
